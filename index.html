@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -11,62 +11,70 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            font-size: 12px;
         }
         .container {
-            width: 90%;
+            width: 95%;
             max-width: 320px;
             background: white;
-            padding: 8px;
+            padding: 5px;
             margin: 5px auto;
-            border-radius: 6px;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
         h1 {
             background: #a83232;
             color: white;
-            padding: 4px;
-            border-radius: 4px;
+            padding: 5px;
+            border-radius: 5px;
             font-size: 14px;
         }
-        input {
-            width: 100%;
+        input, button {
+            width: 98%;
             padding: 4px;
-            margin: 2px 0;
+            margin: 2px;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 11px;
-        }
-        .btn-group {
-            display: flex;
-            justify-content: space-between;
-            gap: 2px;
+            border-radius: 5px;
+            font-size: 12px;
         }
         button {
-            flex: 1;
-            padding: 5px;
+            background: #28a745;
+            color: white;
             border: none;
-            border-radius: 4px;
-            font-size: 10px;
             cursor: pointer;
         }
-        .save-btn { background: #28a745; color: white; }
-        .delete-btn { background: #dc3545; color: white; }
-        .prev-btn { background: #007bff; color: white; }
-        .next-btn { background: #ff9800; color: white; }
-        button:hover { opacity: 0.8; }
+        button:hover {
+            background: #218838;
+        }
+        .delete-btn {
+            background: #dc3545;
+        }
+        .delete-btn:hover {
+            background: #c82333;
+        }
         table {
             width: 100%;
             margin-top: 5px;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
         }
         th, td {
-            padding: 3px;
+            padding: 4px;
             border: 1px solid #ddd;
             text-align: left;
         }
-        th { background: #007bff; color: white; }
+        th {
+            background: #007bff;
+            color: white;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-container button {
+            width: 24%;
+            font-size: 10px;
+            padding: 3px;
+        }
     </style>
 </head>
 <body>
@@ -74,35 +82,39 @@
     <div class="container">
         <h1>♡~Darsul~Haq~♡🌸</h1>
         
-        <label>Your Name:</label>
-        <input type="text" id="userName" placeholder="Enter your name" oninput="saveName()">
+        <label>আপনার নাম:</label>
+        <input type="text" id="userName" placeholder="আপনার নাম লিখুন" oninput="saveName()">
         
-        <h3>Day: <span id="currentDay">1</span>/30</h3>
+        <h3>দিন: <span id="currentDay">1</span>/30</h3>
 
         <table>
             <tr>
                 <th>ক্যাটাগরি</th>
-                <th>Report</th>
+                <th>রিপোর্ট</th>
             </tr>
             <tbody id="reportTable"></tbody>
         </table>
 
-        <div class="btn-group">
-            <button class="save-btn" onclick="saveReport()">📝 Save</button>
-            <button class="delete-btn" onclick="deleteReport()">❌ Delete</button>
-            <button class="prev-btn" onclick="prevDay()">⬅️ Previous</button>
-            <button class="next-btn" onclick="nextDay()">➡️ Next</button>
+        <div class="button-container">
+            <button onclick="saveReport()">📝 সংরক্ষণ</button>
+            <button class="delete-btn" onclick="deleteReport()">❌ মুছুন</button>
+            <button onclick="prevDay()">⬅️ পূর্বের দিন</button>
+            <button onclick="nextDay()">➡️ পরবর্তী দিন</button>
         </div>
 
-        <h3><a href="#" onclick="viewSummary()">📊 View Summary</a></h3>
+        <h3><a href="#" onclick="viewSummary()">📊 সারাংশ দেখুন</a></h3>
     </div>
 
     <script>
         const topics = [
             "ফরজ সালাত", "নফল সালাত", "কুরআন তিলাওয়াত", "হাদিস অধ্যয়ন",
             "দু'আ ও জিকির", "দাওয়াহ কাজ", "সদকা-দান", "পড়াশোনা",
-            "নফল রোযা", "মাতা-পিতার খেদমত", "ভালো কাজ",
-            "নামাজে খুশু-খুযু", "খারাপ কথা থেকে বিরত থাকা", "সময় ব্যবস্থাপনা", "মন্দ থেকে বাঁচা"
+            "নফল রোযা", "মাতা-পিতার খেদমত", "ভালো কাজ", "গিবত এড়ানো",
+            "নামাজে খুশু-খুযু", "খারাপ কথা থেকে বিরত থাকা", "সময় ব্যবস্থাপনা",
+            "মন্দ থেকে বাঁচা", "দুই রাকাত তাহাজ্জুদ", "জোহরের সুন্নত", "মাগরিবের সুন্নত",
+            "ঈমান বৃদ্ধি", "ধৈর্য ধরা", "পরিবারের প্রতি দায়িত্ব", "সততার চর্চা",
+            "কোনো মানুষকে সহায়তা করা", "কোনো ভালো বই পড়া", "কোনো ভালো ভিডিও দেখা",
+            "অহংকার থেকে বাঁচা", "গরীবদের সাহায্য করা", "বিনয়ী হওয়া"
         ];
 
         let currentDay = 1;
@@ -133,7 +145,7 @@
             topics.forEach(topic => {
                 localStorage.setItem(`day${currentDay}_${topic}`, document.getElementById(`report_${topic}`).value);
             });
-            alert("✅ Report saved successfully!");
+            alert("✅ রিপোর্ট সংরক্ষিত হয়েছে!");
         }
 
         function loadReport(topic) {
@@ -141,12 +153,12 @@
         }
 
         function deleteReport() {
-            if (confirm("Are you sure you want to delete this report?")) {
+            if (confirm("আপনি কি রিপোর্ট মুছতে চান?")) {
                 topics.forEach(topic => {
                     localStorage.removeItem(`day${currentDay}_${topic}`);
                 });
                 generateReportTable();
-                alert("❌ Report deleted!");
+                alert("❌ রিপোর্ট মুছে ফেলা হয়েছে!");
             }
         }
 
@@ -156,7 +168,7 @@
                 document.getElementById("currentDay").innerText = currentDay;
                 generateReportTable();
             } else {
-                alert("⚠️ This is the first day!");
+                alert("⚠️ এটি প্রথম দিন!");
             }
         }
 
@@ -166,12 +178,12 @@
                 document.getElementById("currentDay").innerText = currentDay;
                 generateReportTable();
             } else {
-                alert("🎉 You have completed 30 days!");
+                alert("🎉 ৩০ দিনের রিপোর্ট শেষ!");
             }
         }
 
         function viewSummary() {
-            let summary = "<h2>📊 30 Days Report</h2><table><tr><th>ক্যাটাগরি</th><th>Total</th></tr>";
+            let summary = "<h2>📊 ৩০ দিনের রিপোর্ট</h2><table><tr><th>ক্যাটাগরি</th><th>মোট</th></tr>";
             topics.forEach(topic => {
                 let total = 0;
                 for (let i = 1; i <= 30; i++) {
@@ -188,4 +200,4 @@
     </script>
 
 </body>
-  </html>
+</html>
